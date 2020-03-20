@@ -7,7 +7,7 @@
     <ProjectGuid>{46B325BA-78B3-4B5D-ABFB-9E78C2732F6C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HookRegistry</RootNamespace>
+    <RootNamespace>YandereNext</RootNamespace>
     <AssemblyName>NextLib</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>D:\YandereNext\</OutputPath>
+    <OutputPath>D:\YanSimNext\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -41,10 +41,19 @@
       <HintPath>..\hs_link\YandereSimulator_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Assembly-CSharp-firstpass, Version=1.4.1003.3007, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\YanSimNext\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-UnityScript-firstpass">
+      <HintPath>..\..\..\..\Desktop\yansim\YandereSimulator_Data\Managed\Assembly-UnityScript-firstpass.dll</HintPath>
+    </Reference>
     <Reference Include="MoonSharp.Interpreter">
       <HintPath>..\MoonSharp\MoonSharp.Interpreter.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="UnityEngine">
       <HintPath>..\hs_link\YandereSimulator_Data\Managed\UnityEngine.dll</HintPath>
       <Private>False</Private>
@@ -238,6 +247,9 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityScript.Lang" />
+    <Reference Include="XInputDotNetPure">
+      <HintPath>..\..\..\..\Desktop\yansim\YandereSimulator_Data\Managed\XInputDotNetPure.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Plugins\scripts\" />
@@ -245,9 +257,13 @@
     <Folder Include="src\MoonSharp\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="src\HookRegistry.cs" />
     <Compile Include="src\hooks\YandereHook.cs" />
     <Compile Include="src\ReferenceLoader.cs" />
+    <Compile Include="src\YandereNext\LUA\Skeletons\ITranslationObject.cs" />
+    <Compile Include="src\YandereNext\LUA\Skeletons\Localizer.cs" />
+    <Compile Include="src\YandereNext\LUA\Skeletons\LocalizerJSON.cs" />
     <Compile Include="src\YandereNext\LUA\Skeletons\LogConsoleSkeleton.cs" />
     <Compile Include="src\YandereNext\Debugging\LogManager.cs" />
     <Compile Include="src\YandereNext\LUA\LUAScriptFunctionsCaller.cs" />
@@ -258,7 +274,11 @@
     <Compile Include="src\YandereNext\LUA\LUAScriptLoader.cs" />
     <Compile Include="src\YandereNext\LUA\Skeletons\ModelRetargeting.cs" />
     <Compile Include="src\YandereNext\LUA\Skeletons\MonoBehaviourSkeleton.cs" />
+    <Compile Include="src\YandereNext\LUA\Skeletons\RegexObject.cs" />
     <Compile Include="src\YandereNext\LUA\Skeletons\SceneManagerSkeleton.cs" />
+    <Compile Include="src\YandereNext\LUA\Skeletons\TextExtractor.cs" />
+    <Compile Include="src\YandereNext\LUA\Skeletons\TranslationObject.cs" />
+    <Compile Include="src\YandereNext\LUA\Skeletons\Translator.cs" />
     <Compile Include="src\YandereNext\Tools\GeneralFunctions.cs" />
     <Compile Include="src\YandereNext\YandereNextEngine.cs" />
     <Compile Include="src\YandereNext\YandereNextManager.cs" />
@@ -266,6 +286,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y /F "$(OutputPath)/NextLib.dll" "$(OutputPath)/YandereSimulator/YandereSimulator_Data/Managed/NextLib.dll*"</PostBuildEvent>
+    <PostBuildEvent>echo F|xcopy /Y /F "$(OutputPath)/NextLib.dll" "$(OutputPath)/YandereSimulator/YandereSimulator_Data/Managed/NextLib.dll"</PostBuildEvent>
   </PropertyGroup>
 </Project>

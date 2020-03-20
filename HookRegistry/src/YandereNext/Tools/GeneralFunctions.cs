@@ -70,9 +70,10 @@ namespace YandereNext.Tools
 		}
 		public static void SetPersona(int id)
 		{
-			YandereScript script = UnityEngine.Object.FindObjectOfType<YandereScript>();
+			YandereScript script = FindObjectOfType<YandereScript>();
 			if (script != null)
 			{
+				script.Persona = (YanderePersonaType)id;
 				script.UpdatePersona(id);
 			}
 		}

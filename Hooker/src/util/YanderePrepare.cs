@@ -26,7 +26,7 @@ namespace Hooker.src.util
 				var extractGame = downloader.ExtractGame();
 				var extractAPI = downloader.ExtractAPI();
 
-				dlresult = dlURLs && dlGame  && dlAPI && extractGame && extractAPI;
+				dlresult = dlURLs && dlGame && dlAPI && extractGame && extractAPI;
 				if (!dlresult)
 				{
 					Console.WriteLine("One of more files couldn't be downloaded properly");
@@ -241,20 +241,24 @@ namespace Hooker.src.util
 		// Prepares the files for the mod engine to work without manual operations.
 		public static bool PrepareMod()
 		{
-			string YanSimDir = Directory.CreateDirectory(Environment.CurrentDirectory + "\\YandereSimulator").FullName;
-			string dataDir = YanSimDir + "\\YandereSimulator_Data";
-			bool rightDir = Directory.Exists(dataDir) && File.Exists(Environment.CurrentDirectory + "\\hooked") && File.Exists(YanSimDir + "\\YandereSimulator.exe");
-			if (!rightDir)
+			if (Directory.Exists("YandereSimulator") && File.Exists("YandereSimulator/YandereSimulator.exe"))
 			{
-				AskDownload();
+				return true;
 			}
-
+			else
+			{
+				string YanSimDir = Directory.CreateDirectory("YandereSimulator").FullName;
+				Console.WriteLine("Extract Yandere Simulator in " + YanSimDir + " then restart the program");
+				return false;
+			}
+			/*
 			string moonsharp_dll = "\\MoonSharp.Interpreter.dll";
 			if (File.Exists(Environment.CurrentDirectory + moonsharp_dll))
 			{
-				File.Copy(Environment.CurrentDirectory + moonsharp_dll, dataDir + "\\Managed\\" + moonsharp_dll,true);
+				File.Copy(Environment.CurrentDirectory + moonsharp_dll, dataDir + "\\Managed\\" + moonsharp_dll, true);
 			}
-			return true;
+			
+			return true;*/
 
 		}
 	}

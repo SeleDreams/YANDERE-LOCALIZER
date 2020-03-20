@@ -38,6 +38,7 @@ namespace YandereNext
 				hooked = true;
 				Debug.Log("Starting scripting system");
 				LUAScriptManager.LoadScript(File.ReadAllText(ModDir + "/scripts/main.lua"));
+				//SceneManager.LoadScene("LoadingScene");
 			}
 			return null;
 		}

@@ -1,8 +1,10 @@
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using System.IO;
+using System.Reflection;
 using UnityEngine.SceneManagement;
 namespace YandereNext
 {
@@ -14,6 +16,7 @@ namespace YandereNext
 			SceneManager.sceneLoaded += OnSceneLoaded;
 		}
 		
+
 		void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 		{
 			_currentScene = scene.name;
@@ -22,15 +25,13 @@ namespace YandereNext
 			switch (_currentScene)
 			{
 				case "SponsorScene":
+					//Debug.Log(FindObjectOfType<DiscordController>().applicationId);
 					//SceneManager.LoadScene("LoadingScene");
 					break;
-				/*case "SchoolScene":
-					var resource = (GameObject)Resources.Load("honoka/models legacy/f01_schoolwear_100_h");
-					var yandere = FindObjectOfType<YandereScript>();
-					var loadedResource = Instantiate(resource);
-					loadedResource.transform.position = yandere.transform.position;
-					loadedResource.transform.localScale *= 1;
-					break;*/
+				case "SchoolScene":
+					//StartCoroutine(ExtractingText());
+
+					break;
 				default:
 					break;
 			}

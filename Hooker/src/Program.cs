@@ -53,7 +53,7 @@ namespace Hooker
 			if (args.Length <= 0)
 			{
 				Console.WriteLine("NO ARGS");
-				
+
 				if (!File.Exists(Environment.CurrentDirectory + "\\hooked"))
 				{
 					try
@@ -104,17 +104,18 @@ namespace Hooker
 		}
 		static int Main(string[] args)
 		{
-				YanderePrepare.PrepareMod();
-		//	if (!File.Exists("Scenes.txt"))
-			//	YanderePrepare.GetSceneNames();
-			//if (!File.Exists("Resources.txt"))
-			//	YanderePrepare.GetResourcesNames();
-				if (File.Exists(Environment.CurrentDirectory + "\\hooked"))
-				{
-					LaunchGame();
-					return 0;
-				}
-				
+			bool succeeded = YanderePrepare.PrepareMod();
+			if (!succeeded)
+			{
+				Console.ReadLine();
+				return 0;
+			}
+			if (File.Exists(Environment.CurrentDirectory + "\\hooked"))
+			{
+				LaunchGame();
+				return 0;
+			}
+
 			string[] actions = CustomArgs(args);
 			//Console.ReadLine();
 			// Operation
@@ -196,7 +197,7 @@ namespace Hooker
 			}
 			return 0;
 
-			ERROR:
+		ERROR:
 			var tprocess = new System.Diagnostics.Process();
 			var tstartInfo = new System.Diagnostics.ProcessStartInfo
 			{
@@ -207,7 +208,7 @@ namespace Hooker
 			Console.ReadLine();
 			return 1;
 		}
-		
+
 	}
 }
 

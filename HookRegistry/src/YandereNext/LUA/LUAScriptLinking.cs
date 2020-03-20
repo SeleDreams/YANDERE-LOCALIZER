@@ -77,6 +77,8 @@ namespace YandereNext.LUA
 			SendToLUA<LogConsole>();
 			SendToLUA<ModelRetarget>();
 			SendToLUA<Camera>();
+			SendToLUA<Localizer>();
+			SendToLUA<TextExtractor>();
 		}
 		// Links static functions to LUA
 		public static void LinkFunctions()
@@ -109,6 +111,7 @@ namespace YandereNext.LUA
 			SetGlobals("UnlockMech", unlockMech);
 			var spawn = (Action)GeneralFunctions.SpawnOsana;
 			SetGlobals("SpawnOsana", spawn);
+			
 		}
 
 		// Links properties returning informations to LUA
