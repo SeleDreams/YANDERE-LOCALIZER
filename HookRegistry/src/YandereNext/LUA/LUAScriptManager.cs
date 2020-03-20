@@ -5,8 +5,6 @@ namespace YandereNext.LUA
 {
 	public class LUAScriptManager
 	{
-
-
         public static Script ScriptInstance { get; private set; }
 
         static GameObject _managerinstance;

@@ -3,7 +3,6 @@ namespace Hooks
 	[RuntimeHook]
 	class Hook
 	{
-
 		public Hook()
 		{
 			HookRegistry.Register(YandereNext.YandereNextManager.StartHook);
@@ -13,6 +12,5 @@ namespace Hooks
 		{
 			return new string[] { "WelcomeScript::Start" };
 		}
-		
 	}
 }

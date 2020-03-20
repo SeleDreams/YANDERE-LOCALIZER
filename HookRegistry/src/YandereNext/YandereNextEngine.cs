@@ -16,25 +16,9 @@ namespace YandereNext
 			SceneManager.sceneLoaded += OnSceneLoaded;
 		}
 		
-
 		void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 		{
 			_currentScene = scene.name;
-
-			//	Debug.Log(scene.name + " loaded");
-			switch (_currentScene)
-			{
-				case "SponsorScene":
-					//Debug.Log(FindObjectOfType<DiscordController>().applicationId);
-					//SceneManager.LoadScene("LoadingScene");
-					break;
-				case "SchoolScene":
-					//StartCoroutine(ExtractingText());
-
-					break;
-				default:
-					break;
-			}
 		}
 		private static string _currentScene = "WelcomeScene";
 	}

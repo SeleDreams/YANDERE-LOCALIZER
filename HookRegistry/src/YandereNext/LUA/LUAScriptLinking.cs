@@ -2,11 +2,7 @@ using System;
 using UnityEngine;
 using MoonSharp.Interpreter;
 using YandereNext.Debugging;
-using YandereNext.LUA.Skeletons;
 using UnityEngine.SceneManagement;
-using System.IO;
-using YandereNext.Tools;
-using MoonSharp.Interpreter.Interop;
 
 namespace YandereNext.LUA
 {
@@ -41,8 +37,6 @@ namespace YandereNext.LUA
 		{
 			Debug.Log("Registering types");
 			RegisterTypes();
-			Debug.Log("Linking Functions");
-			LinkFunctions();
 			Debug.Log("Linking Data");
 			LinkData();
 		}
@@ -56,62 +50,17 @@ namespace YandereNext.LUA
 			{
 				SetGlobals(method.Method.Name, method);
 			}
-			//Debug.Log(t.Name);
 		}
 
 		public static void RegisterTypes()
 		{
 			//UserData.RegistrationPolicy = InteropRegistrationPolicy.;
-			SendToLUA(InstanceCreator.New_GameObject);
-			SendToLUA<UnityEngine.Object>();
-			SendToLUA<Input>();
 			SendToLUA<Debug>();
+			SendToLUA<Input>();
 			SendToLUA<SceneManager>();
-			SendToLUA<AssetBundle>();
-			SendToLUA(InstanceCreator.New_Vector3);
-			SendToLUA(InstanceCreator.New_Vector2);
-			SendToLUA<Transform>();
-			SendToLUA<Resources>();
-			SendToLUA(InstanceCreator.New_Object);
-			SendToLUA<MonoBehaviour>();
 			SendToLUA<LogConsole>();
-			SendToLUA<ModelRetarget>();
-			SendToLUA<Camera>();
 			SendToLUA<Localizer>();
 			SendToLUA<TextExtractor>();
-		}
-		// Links static functions to LUA
-		public static void LinkFunctions()
-		{
-			var logAction = (Action<string>)Debug.Log;
-			SetGlobals("print", logAction);
-			var tFromString = (Func<string, Type>)GeneralFunctions.GetTypeFromString;
-			SetGlobals("GetTypeFromString", tFromString);
-			var getT = (Func<UserData, Type>)GeneralFunctions.GetType;
-			SetGlobals("GetType", getT);
-			var inherits = (Func<Type, Type, bool>)GeneralFunctions.Inherits;
-			SetGlobals("Inherits", inherits);
-			var objectOfType = (Func<string, UnityEngine.Object>)GeneralFunctions.FindObjectOfType;
-			SetGlobals("FindObjectOfType", objectOfType);
-			var hiddenObjects = (Func<string, GameObject[]>)GeneralFunctions.FindHiddenObjects;
-			SetGlobals("FindHiddenObjects", hiddenObjects);
-			var setHair = (Action<int>)GeneralFunctions.SetHairstyle;
-			SetGlobals("SetHairstyle", setHair);
-			var setAccessory = (Action<int>)GeneralFunctions.SetAccessory;
-			SetGlobals("SetAccessory", setAccessory);
-			var getStudent = (Func<int,GameObject>)GeneralFunctions.GetStudent;
-			SetGlobals("GetStudent", getStudent);
-			var setPersona = (Action<int>)GeneralFunctions.SetPersona;
-			SetGlobals("SetPersona", setPersona);
-			var setStudentHair = (Action<int,string>)GeneralFunctions.UpdateStudentHair;
-			SetGlobals("SetStudentHairstyle", setStudentHair);
-			var fixCam = (Action)GeneralFunctions.FixStreetCamera;
-			SetGlobals("FixCamera", fixCam);
-			var unlockMech = (Action)GeneralFunctions.UnlockMech;
-			SetGlobals("UnlockMech", unlockMech);
-			var spawn = (Action)GeneralFunctions.SpawnOsana;
-			SetGlobals("SpawnOsana", spawn);
-			
 		}
 
 		// Links properties returning informations to LUA

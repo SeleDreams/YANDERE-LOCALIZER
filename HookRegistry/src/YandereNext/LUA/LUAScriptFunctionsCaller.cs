@@ -7,7 +7,6 @@ namespace YandereNext.LUA
 {
 	public class LUAScriptFunctionsCaller : MonoBehaviour
 	{
-
 		LUAScriptFunctionsCaller()
 		{
 			SceneManager.sceneLoaded += OnSceneLoaded;
